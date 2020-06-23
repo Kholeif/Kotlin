@@ -1,0 +1,8 @@
+fun add(view: View) {
+    val alertBuilder = AlertDialog.Builder(this )
+    val view2 = layoutInflater.inflate(R.layout.add_note , null)
+    alertBuilder.setView(view2)
+
+    val alertDialog = alertBuilder.create()
+    alertDialog.show()
+}
