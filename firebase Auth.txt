@@ -1,0 +1,66 @@
+private var mAuth: FirebaseAuth? = null    //barra
+mAuth = FirebaseAuth.getInstance()         //oncreate
+
+ORR --- private val mAuth : FirebaseAuth by lazy { 
+        FirebaseAuth.getInstance()
+    }
+
+
+button.setOnClickListener{
+            val email = editTextTextEmailAddress.text.toString()
+            val password = editTextTextPassword.text.toString()
+            if (email.isNotEmpty() && password.isNotEmpty()){
+		progressBar.visibility = View.VISIBLE
+                mAuth!!.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(applicationContext,"done", Toast.LENGTH_LONG).show()
+			progressBar.visibility = View.GONE
+                    }
+                    else{
+                        Toast.makeText(applicationContext,it.exception!!.message, Toast.LENGTH_LONG).show()
+			progressBar.visibility = View.GONE
+                    }
+                }
+            }
+            else{
+                Toast.makeText(applicationContext,"Empty", Toast.LENGTH_LONG).show()
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+    override fun onStart() {
+        super.onStart()
+
+        var current_user = mAuth!!.currentUser
+        if (current_user != null)
+        {
+            var intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("email", current_user.email.toString())
+            intent.putExtra("uid", current_user.uid.toString())
+            startActivity(intent)
+        }
+    }
+
+
+
+
+
+
+    fun verify_email(){
+        val current_user = mAuth!!.currentUser
+        if(current_user!!.isEmailVerified){
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(applicationContext,"Verify your email first", Toast.LENGTH_LONG).show()
+        }
+    }

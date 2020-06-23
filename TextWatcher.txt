@@ -1,0 +1,23 @@
+class SignUp : AppCompatActivity() , TextWatcher {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_up)
+        editTextTextPersonName.addTextChangedListener(this)
+        editTextTextEmailAddress.addTextChangedListener(this)
+        editTextTextPassword.addTextChangedListener(this)
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        button.isEnabled = editTextTextPersonName.text.trim().isNotEmpty()
+                            && editTextTextEmailAddress.text.trim().isNotEmpty()
+                            && editTextTextPassword.text.trim().isNotEmpty()
+    }
+
+
+
+
+
+
+}

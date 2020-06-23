@@ -1,0 +1,21 @@
+defaultConfig {
+        multiDexEnabled true
+    }
+
+dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+}
+
+
+
+var mAuth: FirebaseAuth? = null
+var db = FirebaseFirestore.getInstance()
+
+
+
+mAuth = FirebaseAuth.getInstance()
+
+
+
+val uid= mAuth!!.currentUser?.uid
+db.document("users6/$uid").set(new_user)

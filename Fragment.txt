@@ -1,0 +1,5 @@
+var myFragment = MyFragment()
+
+val  transaction = supportFragmentManager.beginTransaction()
+transaction.add(R.id.main,myFragment)          OR         transaction.replace(R.id.lallo , fragment)
+transaction.commit()
